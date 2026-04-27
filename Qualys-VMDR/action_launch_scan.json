@@ -23,7 +23,9 @@
         "type": "string"
       }
     },
-    "required": ["scan_title"],
+    "required": [
+      "scan_title"
+    ],
     "title": "Arguments",
     "type": "object"
   },
@@ -45,5 +47,5 @@
     "title": "Results",
     "type": "object"
   },
-  "uuid": "9572d533-cba4-468b-a5b4-08af128058c8"
+  "uuid": "0680a821-313a-462f-8d10-ce6ad53fbeb8"
 }

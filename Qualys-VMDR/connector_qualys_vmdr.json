@@ -33,5 +33,5 @@
   "description": "Fetch host vulnerability detections from Qualys VMDR and forward them to Sekoia intake",
   "docker_parameters": "qualys_vmdr_trigger",
   "name": "Collect host detections from Qualys VMDR",
-  "uuid": "cceeaab1-d0dc-43fc-871d-e91e4a9bb163"
+  "uuid": "970143f0-eba9-4e4d-9f8d-dfbb6d2e75f4"
 }

@@ -9,7 +9,10 @@
       "details": {
         "description": "Level of vulnerability detail to return",
         "type": "string",
-        "enum": ["Basic", "All"],
+        "enum": [
+          "Basic",
+          "All"
+        ],
         "default": "All"
       },
       "published_after": {
@@ -46,5 +49,5 @@
     "title": "Results",
     "type": "object"
   },
-  "uuid": "bf873bcb-19f5-44c7-b3bf-a0bad9213e3c"
+  "uuid": "aea1922d-8f21-4be8-87ce-7e287eb24743"
 }

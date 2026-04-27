@@ -13,13 +13,21 @@
       "include_vuln_type": {
         "description": "Type of vulnerabilities to include",
         "type": "string",
-        "enum": ["confirmed", "potential"],
+        "enum": [
+          "confirmed",
+          "potential"
+        ],
         "default": "confirmed"
       },
       "status": {
         "description": "Filter by detection status",
         "type": "string",
-        "enum": ["New", "Active", "Fixed", "Re-Opened"]
+        "enum": [
+          "New",
+          "Active",
+          "Fixed",
+          "Re-Opened"
+        ]
       },
       "severity": {
         "description": "Filter by severity level (1-5)",
@@ -51,5 +59,5 @@
     "title": "Results",
     "type": "object"
   },
-  "uuid": "2b966e80-e76b-438c-9b7e-6ec45d24e3bd"
+  "uuid": "d4491161-1346-403c-948e-abfcb5cfac0d"
 }

@@ -5,7 +5,12 @@
       "state": {
         "description": "Filter scans by state",
         "type": "string",
-        "enum": ["Running", "Finished", "Error", "Cancelled"]
+        "enum": [
+          "Running",
+          "Finished",
+          "Error",
+          "Cancelled"
+        ]
       },
       "scan_ref": {
         "description": "Specific scan reference to look up",
@@ -37,5 +42,5 @@
     "title": "Results",
     "type": "object"
   },
-  "uuid": "eade52c7-2c78-424a-ae8c-435774af7b66"
+  "uuid": "eaafca41-658e-4d03-99b0-fb650505e4ec"
 }

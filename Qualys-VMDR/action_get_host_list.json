@@ -13,7 +13,11 @@
       "details": {
         "description": "Level of host detail to return",
         "type": "string",
-        "enum": ["Basic", "All", "All/AGs"],
+        "enum": [
+          "Basic",
+          "All",
+          "All/AGs"
+        ],
         "default": "All"
       }
     },
@@ -38,5 +42,5 @@
     "title": "Results",
     "type": "object"
   },
-  "uuid": "aa51c022-bd55-411a-ab72-8fe8c86613b1"
+  "uuid": "810dc74b-3fbb-4edd-90bc-6a664b63e576"
 }

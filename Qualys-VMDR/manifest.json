@@ -29,9 +29,9 @@
   },
   "description": "Qualys VMDR (Vulnerability Management Detection & Response) is a cloud-based platform providing comprehensive vulnerability scanning, detection and response capabilities for IT assets.",
   "name": "Qualys VMDR",
-  "uuid": "d0663eb6-ea30-498c-9d3d-eb0417872139",
+  "uuid": "f6ea6bd2-453f-4944-8e74-a8faccd5fdba",
   "slug": "qualys-vmdr",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "categories": [
     "Endpoint"
   ]

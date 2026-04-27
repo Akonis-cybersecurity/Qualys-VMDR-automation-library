@@ -7,7 +7,9 @@
         "type": "string"
       }
     },
-    "required": ["cve_id"],
+    "required": [
+      "cve_id"
+    ],
     "title": "Arguments",
     "type": "object"
   },
@@ -20,7 +22,9 @@
       "qids": {
         "description": "List of Qualys QIDs matching the CVE",
         "type": "array",
-        "items": {"type": "integer"}
+        "items": {
+          "type": "integer"
+        }
       },
       "vulnerabilities": {
         "description": "Full vulnerability details for each matching QID",
@@ -30,5 +34,5 @@
     "title": "Results",
     "type": "object"
   },
-  "uuid": "714a2124-27df-4fbe-8a41-8599ae9ef043"
+  "uuid": "5d070e52-eaa0-464b-a5ae-eacfe15d6e7e"
 }

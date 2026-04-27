@@ -7,7 +7,9 @@
         "type": "string"
       }
     },
-    "required": ["scan_ref"],
+    "required": [
+      "scan_ref"
+    ],
     "title": "Arguments",
     "type": "object"
   },
@@ -29,5 +31,5 @@
     "title": "Results",
     "type": "object"
   },
-  "uuid": "c675e3fa-af80-457e-aa10-594c99fb9439"
+  "uuid": "283738c2-88fb-4353-8787-e1f3f9aa843c"
 }

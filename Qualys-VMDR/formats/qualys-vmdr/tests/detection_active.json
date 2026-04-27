@@ -1,0 +1,41 @@
+{
+  "host": {
+    "id": "12345",
+    "ip": "192.168.1.10",
+    "ipv6": null,
+    "dns": "server01.corp.example.com",
+    "netbios": "SERVER01",
+    "os": "Windows Server 2019",
+    "asset_id": "987654",
+    "tracking_method": "IP",
+    "last_scan_datetime": "2024-01-15T08:00:00Z",
+    "cloud_provider": null,
+    "tags": ["Production", "Windows"],
+    "cloud_tags": []
+  },
+  "detection": {
+    "qid": "90007",
+    "type": "Confirmed",
+    "severity": "5",
+    "ssl": null,
+    "results": "OS: Windows Server 2019 Standard 17763",
+    "status": "Active",
+    "first_found": "2023-11-01T10:00:00Z",
+    "last_found": "2024-01-15T08:00:00Z",
+    "times_found": "12",
+    "last_fixed": null,
+    "port": null,
+    "protocol": null,
+    "is_ignored": "0",
+    "is_disabled": "0",
+    "affect_running_kernel": null,
+    "affect_running_service": null,
+    "qds": "75",
+    "qds_factors": {
+      "cvss": "9.8",
+      "exploit": "yes"
+    }
+  },
+  "source": "qualys_vmdr",
+  "timestamp": "2024-01-15T08:00:00Z"
+}

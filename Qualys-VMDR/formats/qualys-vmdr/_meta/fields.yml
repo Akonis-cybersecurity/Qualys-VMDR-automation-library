@@ -1,0 +1,119 @@
+qualys.host.id:
+  description: Qualys internal host ID.
+  name: qualys.host.id
+  type: keyword
+
+qualys.host.tracking_method:
+  description: Method used by Qualys to track the host (IP, DNS, NETBIOS, EC2, AGENT).
+  name: qualys.host.tracking_method
+  type: keyword
+
+qualys.host.asset_id:
+  description: Qualys Asset Management ID.
+  name: qualys.host.asset_id
+  type: keyword
+
+qualys.host.last_scan_datetime:
+  description: Date and time of the last vulnerability scan on this host.
+  name: qualys.host.last_scan_datetime
+  type: date
+
+qualys.host.cloud_provider:
+  description: Cloud provider where the host is running (AWS, Azure, GCP).
+  name: qualys.host.cloud_provider
+  type: keyword
+
+qualys.host.tags:
+  description: Qualys asset tags assigned to the host.
+  name: qualys.host.tags
+  type: keyword
+
+qualys.detection.qid:
+  description: Qualys Vulnerability ID (QID) uniquely identifying the vulnerability check.
+  name: qualys.detection.qid
+  type: keyword
+
+qualys.detection.type:
+  description: Detection type — Confirmed or Potential.
+  name: qualys.detection.type
+  type: keyword
+
+qualys.detection.severity:
+  description: Qualys severity level from 1 (minimal) to 5 (critical).
+  name: qualys.detection.severity
+  type: long
+
+qualys.detection.status:
+  description: Current status of the detection (New, Active, Fixed, Re-Opened).
+  name: qualys.detection.status
+  type: keyword
+
+qualys.detection.first_found:
+  description: Date and time the vulnerability was first detected on this host.
+  name: qualys.detection.first_found
+  type: date
+
+qualys.detection.last_found:
+  description: Date and time the vulnerability was last detected on this host.
+  name: qualys.detection.last_found
+  type: date
+
+qualys.detection.last_fixed:
+  description: Date and time the vulnerability was last marked as fixed.
+  name: qualys.detection.last_fixed
+  type: date
+
+qualys.detection.times_found:
+  description: Number of times this vulnerability has been detected on this host.
+  name: qualys.detection.times_found
+  type: long
+
+qualys.detection.port:
+  description: Port number associated with the vulnerability (if applicable).
+  name: qualys.detection.port
+  type: long
+
+qualys.detection.protocol:
+  description: Network protocol associated with the vulnerability (TCP, UDP).
+  name: qualys.detection.protocol
+  type: keyword
+
+qualys.detection.ssl:
+  description: Whether the vulnerability is related to SSL/TLS.
+  name: qualys.detection.ssl
+  type: boolean
+
+qualys.detection.is_ignored:
+  description: Whether the detection has been ignored in Qualys.
+  name: qualys.detection.is_ignored
+  type: boolean
+
+qualys.detection.is_disabled:
+  description: Whether the detection has been disabled in Qualys.
+  name: qualys.detection.is_disabled
+  type: boolean
+
+qualys.detection.affect_running_kernel:
+  description: Whether the vulnerability affects a running kernel.
+  name: qualys.detection.affect_running_kernel
+  type: boolean
+
+qualys.detection.affect_running_service:
+  description: Whether the vulnerability affects a currently running service.
+  name: qualys.detection.affect_running_service
+  type: boolean
+
+qualys.detection.qds:
+  description: Qualys Detection Score (QDS) — a risk-prioritization score (0-100).
+  name: qualys.detection.qds
+  type: long
+
+qualys.detection.qds_factors:
+  description: Factors contributing to the QDS score (CVSS, malware, exploit availability).
+  name: qualys.detection.qds_factors
+  type: object
+
+qualys.detection.results:
+  description: Raw output from the vulnerability check (banner, version string, etc.).
+  name: qualys.detection.results
+  type: text

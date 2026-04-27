@@ -1,0 +1,40 @@
+{
+  "host": {
+    "id": "67890",
+    "ip": "10.0.0.55",
+    "ipv6": null,
+    "dns": "linux-web01.corp.example.com",
+    "netbios": null,
+    "os": "Ubuntu Linux 22.04",
+    "asset_id": null,
+    "tracking_method": "DNS",
+    "last_scan_datetime": "2024-01-16T06:30:00Z",
+    "cloud_provider": "AWS",
+    "tags": ["Production", "Linux", "WebServer"],
+    "cloud_tags": [{"name": "Environment", "value": "prod", "last_success_date": "2024-01-16T06:30:00Z"}]
+  },
+  "detection": {
+    "qid": "38664",
+    "type": "Confirmed",
+    "severity": "3",
+    "ssl": null,
+    "results": "OpenSSH 8.2p1 detected",
+    "status": "New",
+    "first_found": "2024-01-16T06:30:00Z",
+    "last_found": "2024-01-16T06:30:00Z",
+    "times_found": "1",
+    "last_fixed": null,
+    "port": "22",
+    "protocol": "TCP",
+    "is_ignored": "0",
+    "is_disabled": "0",
+    "affect_running_kernel": "0",
+    "affect_running_service": "1",
+    "qds": "45",
+    "qds_factors": {
+      "cvss": "5.3"
+    }
+  },
+  "source": "qualys_vmdr",
+  "timestamp": "2024-01-16T06:30:00Z"
+}

@@ -1,0 +1,33 @@
+[
+  {
+    "value": "QID {qualys.detection.qid} detected on {host.ip} (severity {qualys.detection.severity})",
+    "conditions": [
+      { "field": "qualys.detection.qid" },
+      { "field": "host.ip" },
+      { "field": "qualys.detection.severity" }
+    ]
+  },
+  {
+    "value": "Vulnerability {qualys.detection.qid} is {qualys.detection.status} on {host.hostname}",
+    "conditions": [
+      { "field": "qualys.detection.qid" },
+      { "field": "qualys.detection.status" },
+      { "field": "host.hostname" }
+    ]
+  },
+  {
+    "value": "QDS {qualys.detection.qds} — QID {qualys.detection.qid} on {host.ip}",
+    "conditions": [
+      { "field": "qualys.detection.qds" },
+      { "field": "qualys.detection.qid" },
+      { "field": "host.ip" }
+    ]
+  },
+  {
+    "value": "Vulnerability {qualys.detection.qid} detected on {host.ip}",
+    "conditions": [
+      { "field": "qualys.detection.qid" },
+      { "field": "host.ip" }
+    ]
+  }
+]

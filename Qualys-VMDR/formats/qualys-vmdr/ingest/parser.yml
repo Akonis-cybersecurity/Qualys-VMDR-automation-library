@@ -1,0 +1,336 @@
+name: qualys-vmdr
+
+pipeline:
+  - name: parsed_event
+    external:
+      name: json.parse-json
+      properties:
+        input_field: "{{ original.message }}"
+        output_field: message
+
+  - name: set_observer
+  - name: set_timestamp
+  - name: map_host_fields
+  - name: map_detection_fields
+  - name: ecs_categorization
+  - name: set_vulnerability
+  - name: cleanup
+
+stages:
+  set_observer:
+    actions:
+      - set:
+          observer.type: "application"
+          observer.vendor: "Qualys"
+          observer.product: "VMDR"
+
+  set_timestamp:
+    actions:
+      - set:
+          "@timestamp": "{{ parsed_event.message.detection.last_found }}"
+        filter: >-
+          {{ parsed_event.message.detection is defined and
+             parsed_event.message.detection.last_found is defined and
+             parsed_event.message.detection.last_found is not none and
+             parsed_event.message.detection.last_found is string }}
+
+      - set:
+          "@timestamp": "{{ parsed_event.message.timestamp }}"
+        filter: >-
+          {{ final['@timestamp'] is not defined and
+             parsed_event.message.timestamp is defined and
+             parsed_event.message.timestamp is not none and
+             parsed_event.message.timestamp is string }}
+
+  map_host_fields:
+    actions:
+      - set:
+          host.ip: "{{ [parsed_event.message.host.ip] }}"
+        filter: >-
+          {{ parsed_event.message.host is defined and
+             parsed_event.message.host.ip is defined and
+             parsed_event.message.host.ip is not none }}
+
+      - set:
+          host.hostname: "{{ parsed_event.message.host.dns }}"
+        filter: >-
+          {{ parsed_event.message.host is defined and
+             parsed_event.message.host.dns is defined and
+             parsed_event.message.host.dns is not none }}
+
+      - set:
+          host.name: "{{ parsed_event.message.host.dns }}"
+        filter: >-
+          {{ parsed_event.message.host is defined and
+             parsed_event.message.host.dns is defined and
+             parsed_event.message.host.dns is not none }}
+
+      - set:
+          host.os.full: "{{ parsed_event.message.host.os }}"
+        filter: >-
+          {{ parsed_event.message.host is defined and
+             parsed_event.message.host.os is defined and
+             parsed_event.message.host.os is not none }}
+
+      - set:
+          qualys.host.id: "{{ parsed_event.message.host.id }}"
+        filter: >-
+          {{ parsed_event.message.host is defined and
+             parsed_event.message.host.id is defined and
+             parsed_event.message.host.id is not none }}
+
+      - set:
+          qualys.host.asset_id: "{{ parsed_event.message.host.asset_id }}"
+        filter: >-
+          {{ parsed_event.message.host is defined and
+             parsed_event.message.host.asset_id is defined and
+             parsed_event.message.host.asset_id is not none }}
+
+      - set:
+          qualys.host.tracking_method: "{{ parsed_event.message.host.tracking_method }}"
+        filter: >-
+          {{ parsed_event.message.host is defined and
+             parsed_event.message.host.tracking_method is defined and
+             parsed_event.message.host.tracking_method is not none }}
+
+      - set:
+          qualys.host.last_scan_datetime: "{{ parsed_event.message.host.last_scan_datetime }}"
+        filter: >-
+          {{ parsed_event.message.host is defined and
+             parsed_event.message.host.last_scan_datetime is defined and
+             parsed_event.message.host.last_scan_datetime is not none }}
+
+      - set:
+          qualys.host.cloud_provider: "{{ parsed_event.message.host.cloud_provider }}"
+        filter: >-
+          {{ parsed_event.message.host is defined and
+             parsed_event.message.host.cloud_provider is defined and
+             parsed_event.message.host.cloud_provider is not none }}
+
+      - set:
+          qualys.host.tags: "{{ parsed_event.message.host.tags }}"
+        filter: >-
+          {{ parsed_event.message.host is defined and
+             parsed_event.message.host.tags is defined and
+             parsed_event.message.host.tags is not none and
+             parsed_event.message.host.tags | length > 0 }}
+
+      - set:
+          related.ip: "{{ (final.related.ip | default([])) + [parsed_event.message.host.ip] }}"
+        filter: >-
+          {{ parsed_event.message.host is defined and
+             parsed_event.message.host.ip is defined and
+             parsed_event.message.host.ip is not none }}
+
+      - set:
+          related.hosts: "{{ (final.related.hosts | default([])) + [parsed_event.message.host.dns] }}"
+        filter: >-
+          {{ parsed_event.message.host is defined and
+             parsed_event.message.host.dns is defined and
+             parsed_event.message.host.dns is not none }}
+
+  map_detection_fields:
+    actions:
+      - set:
+          qualys.detection.qid: "{{ parsed_event.message.detection.qid }}"
+        filter: >-
+          {{ parsed_event.message.detection is defined and
+             parsed_event.message.detection.qid is defined and
+             parsed_event.message.detection.qid is not none }}
+
+      - set:
+          qualys.detection.type: "{{ parsed_event.message.detection.type }}"
+        filter: >-
+          {{ parsed_event.message.detection is defined and
+             parsed_event.message.detection.type is defined and
+             parsed_event.message.detection.type is not none }}
+
+      - set:
+          qualys.detection.severity: "{{ parsed_event.message.detection.severity | int }}"
+        filter: >-
+          {{ parsed_event.message.detection is defined and
+             parsed_event.message.detection.severity is defined and
+             parsed_event.message.detection.severity is not none }}
+
+      - set:
+          qualys.detection.status: "{{ parsed_event.message.detection.status }}"
+        filter: >-
+          {{ parsed_event.message.detection is defined and
+             parsed_event.message.detection.status is defined and
+             parsed_event.message.detection.status is not none }}
+
+      - set:
+          qualys.detection.first_found: "{{ parsed_event.message.detection.first_found }}"
+        filter: >-
+          {{ parsed_event.message.detection is defined and
+             parsed_event.message.detection.first_found is defined and
+             parsed_event.message.detection.first_found is not none }}
+
+      - set:
+          qualys.detection.last_found: "{{ parsed_event.message.detection.last_found }}"
+        filter: >-
+          {{ parsed_event.message.detection is defined and
+             parsed_event.message.detection.last_found is defined and
+             parsed_event.message.detection.last_found is not none }}
+
+      - set:
+          qualys.detection.last_fixed: "{{ parsed_event.message.detection.last_fixed }}"
+        filter: >-
+          {{ parsed_event.message.detection is defined and
+             parsed_event.message.detection.last_fixed is defined and
+             parsed_event.message.detection.last_fixed is not none }}
+
+      - set:
+          qualys.detection.times_found: "{{ parsed_event.message.detection.times_found | int }}"
+        filter: >-
+          {{ parsed_event.message.detection is defined and
+             parsed_event.message.detection.times_found is defined and
+             parsed_event.message.detection.times_found is not none }}
+
+      - set:
+          qualys.detection.port: "{{ parsed_event.message.detection.port | int }}"
+        filter: >-
+          {{ parsed_event.message.detection is defined and
+             parsed_event.message.detection.port is defined and
+             parsed_event.message.detection.port is not none and
+             parsed_event.message.detection.port != '' }}
+
+      - set:
+          qualys.detection.protocol: "{{ parsed_event.message.detection.protocol }}"
+        filter: >-
+          {{ parsed_event.message.detection is defined and
+             parsed_event.message.detection.protocol is defined and
+             parsed_event.message.detection.protocol is not none and
+             parsed_event.message.detection.protocol != '' }}
+
+      - set:
+          qualys.detection.is_ignored: "{{ parsed_event.message.detection.is_ignored == '1' }}"
+        filter: >-
+          {{ parsed_event.message.detection is defined and
+             parsed_event.message.detection.is_ignored is defined and
+             parsed_event.message.detection.is_ignored is not none }}
+
+      - set:
+          qualys.detection.is_disabled: "{{ parsed_event.message.detection.is_disabled == '1' }}"
+        filter: >-
+          {{ parsed_event.message.detection is defined and
+             parsed_event.message.detection.is_disabled is defined and
+             parsed_event.message.detection.is_disabled is not none }}
+
+      - set:
+          qualys.detection.affect_running_kernel: "{{ parsed_event.message.detection.affect_running_kernel == '1' }}"
+        filter: >-
+          {{ parsed_event.message.detection is defined and
+             parsed_event.message.detection.affect_running_kernel is defined and
+             parsed_event.message.detection.affect_running_kernel is not none }}
+
+      - set:
+          qualys.detection.affect_running_service: "{{ parsed_event.message.detection.affect_running_service == '1' }}"
+        filter: >-
+          {{ parsed_event.message.detection is defined and
+             parsed_event.message.detection.affect_running_service is defined and
+             parsed_event.message.detection.affect_running_service is not none }}
+
+      - set:
+          qualys.detection.qds: "{{ parsed_event.message.detection.qds | int }}"
+        filter: >-
+          {{ parsed_event.message.detection is defined and
+             parsed_event.message.detection.qds is defined and
+             parsed_event.message.detection.qds is not none and
+             parsed_event.message.detection.qds != '' }}
+
+      - set:
+          qualys.detection.qds_factors: "{{ parsed_event.message.detection.qds_factors }}"
+        filter: >-
+          {{ parsed_event.message.detection is defined and
+             parsed_event.message.detection.qds_factors is defined and
+             parsed_event.message.detection.qds_factors is not none and
+             parsed_event.message.detection.qds_factors | length > 0 }}
+
+      - set:
+          qualys.detection.results: "{{ parsed_event.message.detection.results }}"
+        filter: >-
+          {{ parsed_event.message.detection is defined and
+             parsed_event.message.detection.results is defined and
+             parsed_event.message.detection.results is not none and
+             parsed_event.message.detection.results != '' }}
+
+  ecs_categorization:
+    actions:
+      - set:
+          event.provider: "qualys"
+          event.dataset: "qualys.vmdr"
+          event.kind: "event"
+          event.category: "{{ ['vulnerability'] }}"
+          event.type: "{{ ['info'] }}"
+          event.action: "detection"
+
+      - set:
+          event.action: "new-detection"
+        filter: "{{ parsed_event.message.detection is defined and parsed_event.message.detection.status == 'New' }}"
+
+      - set:
+          event.action: "fixed"
+          event.outcome: "success"
+        filter: "{{ parsed_event.message.detection is defined and parsed_event.message.detection.status == 'Fixed' }}"
+
+      - set:
+          event.action: "reopened-detection"
+        filter: "{{ parsed_event.message.detection is defined and parsed_event.message.detection.status == 'Re-Opened' }}"
+
+      - set:
+          event.severity: "{{ parsed_event.message.detection.severity | int }}"
+        filter: >-
+          {{ parsed_event.message.detection is defined and
+             parsed_event.message.detection.severity is defined and
+             parsed_event.message.detection.severity is not none }}
+
+  set_vulnerability:
+    actions:
+      - set:
+          vulnerability.id: "{{ parsed_event.message.detection.qid }}"
+          vulnerability.scanner.vendor: "Qualys"
+        filter: >-
+          {{ parsed_event.message.detection is defined and
+             parsed_event.message.detection.qid is defined }}
+
+      - set:
+          vulnerability.severity: "critical"
+        filter: >-
+          {{ parsed_event.message.detection is defined and
+             parsed_event.message.detection.severity is defined and
+             parsed_event.message.detection.severity | int == 5 }}
+
+      - set:
+          vulnerability.severity: "high"
+        filter: >-
+          {{ parsed_event.message.detection is defined and
+             parsed_event.message.detection.severity is defined and
+             parsed_event.message.detection.severity | int == 4 }}
+
+      - set:
+          vulnerability.severity: "medium"
+        filter: >-
+          {{ parsed_event.message.detection is defined and
+             parsed_event.message.detection.severity is defined and
+             parsed_event.message.detection.severity | int == 3 }}
+
+      - set:
+          vulnerability.severity: "low"
+        filter: >-
+          {{ parsed_event.message.detection is defined and
+             parsed_event.message.detection.severity is defined and
+             parsed_event.message.detection.severity | int in [1, 2] }}
+
+      - set:
+          vulnerability.score.base: "{{ parsed_event.message.detection.qds_factors.cvss | float }}"
+        filter: >-
+          {{ parsed_event.message.detection is defined and
+             parsed_event.message.detection.qds_factors is defined and
+             parsed_event.message.detection.qds_factors.cvss is defined and
+             parsed_event.message.detection.qds_factors.cvss is not none }}
+
+  cleanup:
+    actions:
+      - delete:
+          - parsed_event

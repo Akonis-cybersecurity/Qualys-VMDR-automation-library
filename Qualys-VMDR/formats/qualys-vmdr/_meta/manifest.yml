@@ -1,0 +1,8 @@
+uuid: 51d5d806-a9ab-45fd-9e65-b4722bca5eef
+name: Qualys VMDR
+slug: qualys-vmdr
+description: "Host vulnerability detection events from the Qualys VMDR API. Covers confirmed and potential vulnerability detections per host with severity, QDS score and CVE context."
+data_sources:
+  Third-party application logs: "Vulnerability detection events from the Qualys VMDR API"
+automation_connector_uuid: cceeaab1-d0dc-43fc-871d-e91e4a9bb163
+automation_module_uuid: d0663eb6-ea30-498c-9d3d-eb0417872139

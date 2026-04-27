@@ -1,0 +1,41 @@
+{
+  "arguments": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "properties": {
+      "state": {
+        "description": "Filter scans by state",
+        "type": "string",
+        "enum": ["Running", "Finished", "Error", "Cancelled"]
+      },
+      "scan_ref": {
+        "description": "Specific scan reference to look up",
+        "type": "string"
+      },
+      "launched_after_datetime": {
+        "description": "Return scans launched after this date (YYYY-MM-DD)",
+        "type": "string"
+      }
+    },
+    "title": "Arguments",
+    "type": "object"
+  },
+  "description": "List vulnerability scans from Qualys",
+  "docker_parameters": "qualys_get_scan_list",
+  "name": "Get Scan List",
+  "results": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "properties": {
+      "scans": {
+        "description": "List of scan records with reference, title, state, dates and targets",
+        "type": "array"
+      },
+      "total": {
+        "description": "Total number of scans returned",
+        "type": "integer"
+      }
+    },
+    "title": "Results",
+    "type": "object"
+  },
+  "uuid": "eade52c7-2c78-424a-ae8c-435774af7b66"
+}

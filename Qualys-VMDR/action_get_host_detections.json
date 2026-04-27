@@ -1,0 +1,55 @@
+{
+  "arguments": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "properties": {
+      "host_ids": {
+        "description": "Comma-separated Qualys host IDs to filter",
+        "type": "string"
+      },
+      "ips": {
+        "description": "IP addresses or ranges to filter (e.g. '10.0.0.1,10.0.0.2-10.0.0.10')",
+        "type": "string"
+      },
+      "include_vuln_type": {
+        "description": "Type of vulnerabilities to include",
+        "type": "string",
+        "enum": ["confirmed", "potential"],
+        "default": "confirmed"
+      },
+      "status": {
+        "description": "Filter by detection status",
+        "type": "string",
+        "enum": ["New", "Active", "Fixed", "Re-Opened"]
+      },
+      "severity": {
+        "description": "Filter by severity level (1-5)",
+        "type": "string"
+      }
+    },
+    "title": "Arguments",
+    "type": "object"
+  },
+  "description": "Retrieve vulnerability detections for hosts from Qualys VMDR",
+  "docker_parameters": "qualys_get_host_detections",
+  "name": "Get Host Detections",
+  "results": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "properties": {
+      "detections": {
+        "description": "List of host detection events",
+        "type": "array"
+      },
+      "total_hosts": {
+        "description": "Number of unique hosts returned",
+        "type": "integer"
+      },
+      "total_detections": {
+        "description": "Total number of detections returned",
+        "type": "integer"
+      }
+    },
+    "title": "Results",
+    "type": "object"
+  },
+  "uuid": "2b966e80-e76b-438c-9b7e-6ec45d24e3bd"
+}

@@ -1,0 +1,36 @@
+{
+  "arguments": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "properties": {
+      "ids": {
+        "description": "Comma-separated asset group IDs",
+        "type": "string"
+      },
+      "title_contains": {
+        "description": "Filter groups whose title contains this string",
+        "type": "string"
+      }
+    },
+    "title": "Arguments",
+    "type": "object"
+  },
+  "description": "List asset groups defined in Qualys",
+  "docker_parameters": "qualys_get_asset_groups",
+  "name": "Get Asset Groups",
+  "results": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "properties": {
+      "asset_groups": {
+        "description": "List of asset groups with ID, title, IPs and description",
+        "type": "array"
+      },
+      "total": {
+        "description": "Total number of asset groups returned",
+        "type": "integer"
+      }
+    },
+    "title": "Results",
+    "type": "object"
+  },
+  "uuid": "0c0d899f-9cf2-48b5-a4d9-2ffab0ee83df"
+}

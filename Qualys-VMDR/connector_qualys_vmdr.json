@@ -1,0 +1,38 @@
+{
+  "arguments": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "properties": {
+      "frequency": {
+        "type": "integer",
+        "description": "Polling interval in seconds between two detection fetches",
+        "default": 3600,
+        "minimum": 60
+      },
+      "chunk_lookback_hours": {
+        "type": "integer",
+        "description": "Number of hours to look back on the first run",
+        "default": 1,
+        "minimum": 1
+      },
+      "intake_server": {
+        "description": "Server of the intake server (e.g. 'https://intake.sekoia.io')",
+        "default": "https://intake.sekoia.io",
+        "type": "string"
+      },
+      "intake_key": {
+        "description": "Intake key to use when sending events",
+        "type": "string"
+      }
+    },
+    "required": [
+      "intake_key"
+    ],
+    "title": "Trigger Arguments",
+    "type": "object"
+  },
+  "results": {},
+  "description": "Fetch host vulnerability detections from Qualys VMDR and forward them to Sekoia intake",
+  "docker_parameters": "qualys_vmdr_trigger",
+  "name": "Collect host detections from Qualys VMDR",
+  "uuid": "cceeaab1-d0dc-43fc-871d-e91e4a9bb163"
+}

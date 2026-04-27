@@ -1,0 +1,33 @@
+{
+  "arguments": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "properties": {
+      "scan_ref": {
+        "description": "Scan reference to fetch results for (e.g. 'scan/1234567890.12345')",
+        "type": "string"
+      }
+    },
+    "required": ["scan_ref"],
+    "title": "Arguments",
+    "type": "object"
+  },
+  "description": "Fetch detailed results of a completed Qualys scan",
+  "docker_parameters": "qualys_get_scan_results",
+  "name": "Get Scan Results",
+  "results": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "properties": {
+      "results": {
+        "description": "Parsed scan results per host",
+        "type": "array"
+      },
+      "host_count": {
+        "description": "Number of hosts in the scan results",
+        "type": "integer"
+      }
+    },
+    "title": "Results",
+    "type": "object"
+  },
+  "uuid": "c675e3fa-af80-457e-aa10-594c99fb9439"
+}

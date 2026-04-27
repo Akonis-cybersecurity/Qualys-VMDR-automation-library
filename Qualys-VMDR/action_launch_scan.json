@@ -1,0 +1,49 @@
+{
+  "arguments": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "properties": {
+      "scan_title": {
+        "description": "Title for the new scan",
+        "type": "string"
+      },
+      "ips": {
+        "description": "Target IP addresses or ranges",
+        "type": "string"
+      },
+      "asset_group_ids": {
+        "description": "Comma-separated asset group IDs to scan",
+        "type": "string"
+      },
+      "option_id": {
+        "description": "Option profile ID to use for the scan",
+        "type": "string"
+      },
+      "option_title": {
+        "description": "Option profile name to use for the scan",
+        "type": "string"
+      }
+    },
+    "required": ["scan_title"],
+    "title": "Arguments",
+    "type": "object"
+  },
+  "description": "Launch a new vulnerability management scan in Qualys",
+  "docker_parameters": "qualys_launch_scan",
+  "name": "Launch VM Scan",
+  "results": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "properties": {
+      "scan_ref": {
+        "description": "Unique scan reference (e.g. 'scan/1234567890.12345')",
+        "type": "string"
+      },
+      "scan_id": {
+        "description": "Numeric scan ID",
+        "type": "string"
+      }
+    },
+    "title": "Results",
+    "type": "object"
+  },
+  "uuid": "9572d533-cba4-468b-a5b4-08af128058c8"
+}

@@ -1,0 +1,42 @@
+{
+  "arguments": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "properties": {
+      "ids": {
+        "description": "Comma-separated Qualys host IDs",
+        "type": "string"
+      },
+      "ips": {
+        "description": "IP addresses or ranges",
+        "type": "string"
+      },
+      "details": {
+        "description": "Level of host detail to return",
+        "type": "string",
+        "enum": ["Basic", "All", "All/AGs"],
+        "default": "All"
+      }
+    },
+    "title": "Arguments",
+    "type": "object"
+  },
+  "description": "List hosts from the Qualys asset inventory",
+  "docker_parameters": "qualys_get_host_list",
+  "name": "Get Host List",
+  "results": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "properties": {
+      "hosts": {
+        "description": "List of host records",
+        "type": "array"
+      },
+      "total": {
+        "description": "Total number of hosts returned",
+        "type": "integer"
+      }
+    },
+    "title": "Results",
+    "type": "object"
+  },
+  "uuid": "aa51c022-bd55-411a-ab72-8fe8c86613b1"
+}

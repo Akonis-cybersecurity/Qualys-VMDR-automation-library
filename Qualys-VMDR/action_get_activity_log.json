@@ -1,0 +1,40 @@
+{
+  "arguments": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "properties": {
+      "username": {
+        "description": "Filter log entries by Qualys username",
+        "type": "string"
+      },
+      "since_datetime": {
+        "description": "Return entries after this datetime (YYYY-MM-DDTHH:MM:SSZ)",
+        "type": "string"
+      },
+      "until_datetime": {
+        "description": "Return entries before this datetime (YYYY-MM-DDTHH:MM:SSZ)",
+        "type": "string"
+      }
+    },
+    "title": "Arguments",
+    "type": "object"
+  },
+  "description": "Retrieve the Qualys platform activity log",
+  "docker_parameters": "qualys_get_activity_log",
+  "name": "Get Activity Log",
+  "results": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "properties": {
+      "log_entries": {
+        "description": "List of activity log entries with user, action, datetime and details",
+        "type": "array"
+      },
+      "total": {
+        "description": "Total number of log entries returned",
+        "type": "integer"
+      }
+    },
+    "title": "Results",
+    "type": "object"
+  },
+  "uuid": "2647f3e1-6ea3-4819-a430-59dee04cf2d2"
+}

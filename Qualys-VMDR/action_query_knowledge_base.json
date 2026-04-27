@@ -1,0 +1,50 @@
+{
+  "arguments": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "properties": {
+      "ids": {
+        "description": "Comma-separated QIDs to look up (e.g. '90007,12345')",
+        "type": "string"
+      },
+      "details": {
+        "description": "Level of vulnerability detail to return",
+        "type": "string",
+        "enum": ["Basic", "All"],
+        "default": "All"
+      },
+      "published_after": {
+        "description": "Filter vulnerabilities published after this date (YYYY-MM-DD)",
+        "type": "string"
+      },
+      "published_before": {
+        "description": "Filter vulnerabilities published before this date (YYYY-MM-DD)",
+        "type": "string"
+      },
+      "cvss_base_min": {
+        "description": "Minimum CVSS base score",
+        "type": "number"
+      }
+    },
+    "title": "Arguments",
+    "type": "object"
+  },
+  "description": "Query the Qualys vulnerability knowledge base (API v3)",
+  "docker_parameters": "qualys_query_knowledge_base",
+  "name": "Query Knowledge Base",
+  "results": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "properties": {
+      "vulnerabilities": {
+        "description": "List of vulnerability records with QID, title, CVSS, CVEs, solution and patch info",
+        "type": "array"
+      },
+      "total": {
+        "description": "Total number of vulnerabilities returned",
+        "type": "integer"
+      }
+    },
+    "title": "Results",
+    "type": "object"
+  },
+  "uuid": "bf873bcb-19f5-44c7-b3bf-a0bad9213e3c"
+}

@@ -1,0 +1,36 @@
+{
+  "arguments": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "properties": {
+      "ids": {
+        "description": "Comma-separated host IDs to purge",
+        "type": "string"
+      },
+      "ips": {
+        "description": "IP addresses or ranges to purge",
+        "type": "string"
+      }
+    },
+    "title": "Arguments",
+    "type": "object"
+  },
+  "description": "Purge host records from Qualys. At least one of 'ids' or 'ips' must be provided.",
+  "docker_parameters": "qualys_purge_hosts",
+  "name": "Purge Hosts",
+  "results": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "properties": {
+      "purged_count": {
+        "description": "Number of hosts purged",
+        "type": "integer"
+      },
+      "message": {
+        "description": "Response message from Qualys API",
+        "type": "string"
+      }
+    },
+    "title": "Results",
+    "type": "object"
+  },
+  "uuid": "4d72bfea-fe07-4756-af72-723b89fac0cf"
+}

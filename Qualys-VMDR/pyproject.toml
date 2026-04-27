@@ -1,52 +1,48 @@
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
 [tool.poetry]
-name = "Automation module for Qualys-vmdr"
-version = "0.0"
+name = "Automation module for Qualys VMDR"
+version = "1.0.0"
 description = ""
 authors = []
 package-mode = false
 
-[tool.poetry.dependencies]
-python = "^3.11"
-sekoia-automation-sdk = "^1.22.5"
-
-[tool.poetry.dev-dependencies]
-pytest = "*"
-pytest-cov = "*"
-requests = "*"
-requests-mock = "*"
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-
 [tool.black]
 line-length = 119
-target-version = ['py38']
-include = '\.pyi?$'
+target-version = ["py311"]
+include = "\\.pyi?$"
 
 [tool.isort]
 profile = "black"
 line_length = 119
 
+[tool.poetry.dependencies]
+python = ">=3.11,<3.12"
+sekoia-automation-sdk = "^1.22.5"
+requests = "^2.31.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "*"
+pytest-cov = "*"
+requests-mock = "*"
+freezegun = "*"
+
 [tool.coverage.run]
-omit = [
-    "tests/*",
-    "main.py",
-]
+omit = ["tests/*", "main.py"]
 
 [tool.pytest.ini_options]
 minversion = "6.0"
-testpaths = [
-    "tests",
-]
-addopts = '''
+testpaths = ["tests"]
+addopts = """
   --strict-markers
   --tb=short
-  --cov=qualys-vmdr_modules
+  --cov=qualys_modules
   --cov-branch
   --cache-clear
   --cov-report=html
   --cov-report=term-missing:skip-covered
   --cov-fail-under=5
   --capture=sys
-'''
+"""

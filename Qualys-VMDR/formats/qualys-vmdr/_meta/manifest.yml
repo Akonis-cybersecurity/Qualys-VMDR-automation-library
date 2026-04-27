@@ -5,4 +5,4 @@ description: "Host vulnerability detection events from the Qualys VMDR API. Cove
 data_sources:
   Third-party application logs: "Vulnerability detection events from the Qualys VMDR API"
 automation_connector_uuid: 970143f0-eba9-4e4d-9f8d-dfbb6d2e75f4
-automation_module_uuid: f6ea6bd2-453f-4944-8e74-a8faccd5fdba
+automation_module_uuid: d0663eb6-ea30-498c-9d3d-eb0417872139

@@ -30,7 +30,6 @@
     "title": "Trigger Arguments",
     "type": "object"
   },
-  "results": {},
   "description": "Fetch host vulnerability detections from Qualys VMDR and forward them to Sekoia intake",
   "docker_parameters": "qualys_vmdr_trigger",
   "name": "Collect host detections from Qualys VMDR",
